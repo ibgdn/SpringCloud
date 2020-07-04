@@ -5,6 +5,7 @@ import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,6 +22,9 @@ import java.util.List;
 public class ConsumerController {
     @Autowired
     DiscoveryClient discoveryClient;
+
+    @Autowired
+    RestTemplate restTemplate;
 
     int count;
 
@@ -118,5 +122,31 @@ public class ConsumerController {
             e.printStackTrace();
         }
         return "Consumer Controller Dynamic Error.";
+    }
+
+
+    /**
+     * 通过 RestTemplate 动态均衡获取并调用服务提供者的接口
+     *
+     * @return String 服务提供者返回数据
+     */
+    @GetMapping("/rt/consumer")
+    public String restTemplateConsumer() {
+        // 获取服务提供者列表。获取一次即可，需要做缓存操作。
+        List<ServiceInstance> providerList = discoveryClient.getInstances("provider");
+        // 通过取余获取线性负载均衡。
+        ServiceInstance serviceInstance = providerList.get((count++) % providerList.size());
+        String host = serviceInstance.getHost();
+        int port = serviceInstance.getPort();
+        StringBuilder stringBuilder = new StringBuilder();
+        // 拼接调用地址及接口
+        stringBuilder.append("http://").append(host).append(":").append(port).append("/provider");
+        String spec = stringBuilder.toString();
+        System.out.println("Class: " + this.getClass().getName()
+                + ", Method: " + Thread.currentThread().getStackTrace()[1].getMethodName()
+                + ", url: " + spec);
+
+        String restTemplateStr = restTemplate.getForObject(spec, String.class);
+        return restTemplateStr;
     }
 }
