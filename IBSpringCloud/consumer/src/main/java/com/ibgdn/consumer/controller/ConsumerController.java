@@ -22,6 +22,8 @@ public class ConsumerController {
     @Autowired
     DiscoveryClient discoveryClient;
 
+    int count;
+
     /**
      * 静态地址调用服务提供者的接口
      *
@@ -65,6 +67,44 @@ public class ConsumerController {
         HttpURLConnection connection;
         try {
             URL url = new URL(stringBuilder.toString());
+            connection = (HttpURLConnection) url.openConnection();
+            if (connection.getResponseCode() == 200) {
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String readLine = bufferedReader.readLine();
+                bufferedReader.close();
+                return readLine;
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "Consumer Controller Dynamic Error.";
+    }
+
+    /**
+     * 动态均衡获取并调用服务提供者的接口
+     *
+     * @return String 服务提供者返回数据
+     */
+    @GetMapping("/dynamic/balance/consumer")
+    public String dynamicBalanceConsumer() {
+        // 获取服务提供者列表。获取一次即可，需要做缓存操作。
+        List<ServiceInstance> providerList = discoveryClient.getInstances("provider");
+        // 通过取余获取线性负载均衡。
+        ServiceInstance serviceInstance = providerList.get((count++) % providerList.size());
+        String host = serviceInstance.getHost();
+        int port = serviceInstance.getPort();
+        StringBuilder stringBuilder = new StringBuilder();
+        // 拼接调用地址及接口
+        stringBuilder.append("http://").append(host).append(":").append(port).append("/provider");
+        HttpURLConnection connection;
+        try {
+            String spec = stringBuilder.toString();
+            System.out.println("Class: " + this.getClass().getName()
+                    + ", Method: " + Thread.currentThread().getStackTrace()[1].getMethodName()
+                    + ", url: " + spec);
+            URL url = new URL(spec);
             connection = (HttpURLConnection) url.openConnection();
             if (connection.getResponseCode() == 200) {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
