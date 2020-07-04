@@ -17,4 +17,15 @@ public class ProviderController {
     public String provider() {
         return "Provider Controller. Port: " + port;
     }
+
+    /**
+     * RestTemplate Get 方法
+     *
+     * @param name 传入参数
+     * @return String 返回字符串
+     */
+    @GetMapping("/providerGet")
+    public String providerGet(String name) {
+        return "Provider Controller providerGet. Name: " + name;
+    }
 }
