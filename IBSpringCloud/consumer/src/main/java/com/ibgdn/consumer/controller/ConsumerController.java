@@ -1,5 +1,8 @@
 package com.ibgdn.consumer.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,13 +12,21 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
+import java.util.List;
 
 /**
  * 服务消费接口
  */
 @RestController
 public class ConsumerController {
+    @Autowired
+    DiscoveryClient discoveryClient;
+
+    /**
+     * 静态地址调用服务提供者的接口
+     *
+     * @return String 服务提供者返回数据
+     */
     @GetMapping("/static/consumer")
     public String staticConsumer() {
         HttpURLConnection connection;
@@ -34,5 +45,38 @@ public class ConsumerController {
             e.printStackTrace();
         }
         return "Consumer Controller Error.";
+    }
+
+    /**
+     * 动态获取并调用服务提供者的接口
+     *
+     * @return String 服务提供者返回数据
+     */
+    @GetMapping("/dynamic/consumer")
+    public String dynamicConsumer() {
+        // 获取服务提供者列表
+        List<ServiceInstance> providerList = discoveryClient.getInstances("provider");
+        ServiceInstance serviceInstance = providerList.get(0);
+        String host = serviceInstance.getHost();
+        int port = serviceInstance.getPort();
+        StringBuilder stringBuilder = new StringBuilder();
+        // 拼接调用地址及接口
+        stringBuilder.append("http://").append(host).append(":").append(port).append("/provider");
+        HttpURLConnection connection;
+        try {
+            URL url = new URL(stringBuilder.toString());
+            connection = (HttpURLConnection) url.openConnection();
+            if (connection.getResponseCode() == 200) {
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String readLine = bufferedReader.readLine();
+                bufferedReader.close();
+                return readLine;
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "Consumer Controller Dynamic Error.";
     }
 }
