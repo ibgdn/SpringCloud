@@ -2,6 +2,7 @@ package com.ibgdn.consumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
@@ -14,6 +15,12 @@ public class ConsumerApplication {
 
     @Bean
     public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+
+    @Bean
+    @LoadBalanced
+    public RestTemplate loadBalancedRestTemplate() {
         return new RestTemplate();
     }
 }

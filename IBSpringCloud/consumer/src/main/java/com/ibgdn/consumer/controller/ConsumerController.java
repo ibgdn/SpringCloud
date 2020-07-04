@@ -1,6 +1,7 @@
 package com.ibgdn.consumer.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ public class ConsumerController {
     DiscoveryClient discoveryClient;
 
     @Autowired
+    @Qualifier("restTemplate")
     RestTemplate restTemplate;
 
     int count;
@@ -130,7 +132,7 @@ public class ConsumerController {
      *
      * @return String 服务提供者返回数据
      */
-    @GetMapping("/rt/consumer")
+    @GetMapping("/restTemplate/consumer")
     public String restTemplateConsumer() {
         // 获取服务提供者列表。获取一次即可，需要做缓存操作。
         List<ServiceInstance> providerList = discoveryClient.getInstances("provider");
@@ -148,5 +150,20 @@ public class ConsumerController {
 
         String restTemplateStr = restTemplate.getForObject(spec, String.class);
         return restTemplateStr;
+    }
+
+    @Autowired
+    @Qualifier("loadBalancedRestTemplate")
+    RestTemplate loadBalancedRestTemplate;
+
+    /**
+     * 通过 RestTemplate 动态均衡获取并调用服务提供者的接口
+     *
+     * @return String 服务提供者返回数据
+     */
+    @GetMapping("/loadBalanced/consumer")
+    public String loadBalancedRestTemplateConsumer() {
+        // 第一个 provider 属于模糊调用，第二个 provider 调用 provider 的 provider 接口。
+        return loadBalancedRestTemplate.getForObject("http://provider/provider", String.class);
     }
 }
