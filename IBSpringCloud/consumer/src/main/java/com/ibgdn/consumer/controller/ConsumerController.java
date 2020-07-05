@@ -1,11 +1,14 @@
 package com.ibgdn.consumer.controller;
 
+import com.ibgdn.commons.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -217,5 +220,55 @@ public class ConsumerController {
         URI uri = URI.create(url);
         s1 = loadBalancedRestTemplate.getForObject(uri, String.class);
         System.out.println("url?name=张三: " + s1);
+    }
+
+    /**
+     * RestTemplate Post key value 测试方法
+     * <p>
+     * 请求接口后的输出内容如下：
+     * Class: com.ibgdn.consumer.controller.ConsumerController, Method: restTemplatePostKeyValue, user: User{id=99, username='userKeyValue', password='123456'}
+     */
+    @GetMapping("/restTemplatePostKeyValue")
+    public void restTemplatePostKeyValue() {
+        MultiValueMap<String, Object> linkedMultiValueMap = new LinkedMultiValueMap<>();
+        linkedMultiValueMap.add("id", 99);
+        linkedMultiValueMap.add("username", "userKeyValue");
+        linkedMultiValueMap.add("password", "123456");
+        User user = loadBalancedRestTemplate.postForObject("http://provider/providerPostKeyValue", linkedMultiValueMap, User.class);
+        System.out.println("Class: " + this.getClass().getName()
+                + ", Method: " + Thread.currentThread().getStackTrace()[1].getMethodName()
+                + ", user: " + user);
+    }
+
+    /**
+     * RestTemplate Post json 测试方法
+     * <p>
+     * 请求接口后的输出内容如下：
+     * Class: com.ibgdn.consumer.controller.ConsumerController, Method: restTemplatePostJson, user: User{id=999, username='userJson', password='123456'}
+     */
+    @GetMapping("/restTemplatePostJson")
+    public void restTemplatePostJson() {
+        User modelUser = new User();
+        modelUser.setId(999);
+        modelUser.setUsername("userJson");
+        modelUser.setPassword("123456");
+        User user = loadBalancedRestTemplate.postForObject("http://provider/providerPostJson", modelUser, User.class);
+        System.out.println("Class: " + this.getClass().getName()
+                + ", Method: " + Thread.currentThread().getStackTrace()[1].getMethodName()
+                + ", user: " + user);
+    }
+
+    @GetMapping("/restTemplatePostLocation")
+    public void hello7() {
+        MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
+        map.add("username", "username");
+        map.add("password", "123456");
+        map.add("id", 99);
+        URI uri = loadBalancedRestTemplate.postForLocation("http://provider/register", map);
+        System.out.println("postForLocation uri: + " + uri);
+        String s = loadBalancedRestTemplate.getForObject(uri, String.class);
+        System.out.println("Class: " + this.getClass().getName()
+                + ", Method: " + Thread.currentThread().getStackTrace()[1].getMethodName()
+                + ", user: " + s);
     }
 }

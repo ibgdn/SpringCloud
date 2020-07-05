@@ -1,7 +1,10 @@
 package com.ibgdn.provider.controller;
 
+import com.ibgdn.commons.model.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -27,5 +30,27 @@ public class ProviderController {
     @GetMapping("/providerGet")
     public String providerGet(String name) {
         return "Provider Controller providerGet. Name: " + name;
+    }
+
+    /**
+     * RestTemplate Post 方法
+     *
+     * @param user 添加用户（key、value)
+     * @return user 添加用户
+     */
+    @PostMapping("/providerPostKeyValue")
+    public User providerPost(User user) {
+        return user;
+    }
+
+    /**
+     * RestTemplate Post 方法
+     *
+     * @param user 添加用户（json）
+     * @return user 添加用户
+     */
+    @PostMapping("/providerPostJson")
+    public User providerPost2(@RequestBody User user) {
+        return user;
     }
 }
