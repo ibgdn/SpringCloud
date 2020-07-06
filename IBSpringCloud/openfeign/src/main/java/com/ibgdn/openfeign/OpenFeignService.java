@@ -1,7 +1,8 @@
 package com.ibgdn.openfeign;
 
+import com.ibgdn.commons.model.User;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * OpenFeign 接口
@@ -15,4 +16,19 @@ public interface OpenFeignService {
      */
     @GetMapping("/providerGet")
     String openFeignServiceGet();
+
+    @GetMapping("/providerGet")
+    String openFeignServiceProviderGet(@RequestParam("name") String name);
+
+    @PostMapping("/providerPostJson")
+    User openFeignServiceProviderPost(@RequestBody User user);
+
+    @PutMapping("/")
+    User openFeignServiceProviderPut(@RequestBody User user);
+
+    @DeleteMapping("/providerDeletePathVariable/{id}")
+    void openFeignServiceProviderDelete(@PathVariable("id") Integer id);
+
+    @GetMapping("/openFeignRequestHeader")
+    void openFeignServiceProviderDeleteRequestHeader(@RequestHeader("name") String name);
 }

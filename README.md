@@ -129,8 +129,27 @@ http://localhost:1130/restTemplateDeletePathVariable
 
 
 
-### 1.5 commons 服务注册
+### 1.5 commons 通用组件
 
 #### 1.5.1 创建
 
 添加 commons Module（Maven）。
+
+
+
+### 1.6 openfeign 请求简化方案
+
+#### 1.6.1 创建
+
+添加 `openfeign` Module（Spring Boot）。
+
+勾选 `Web` `Spring Web` 、`Spring Cloud Discovery` `Eureka Discovery Client` 、`Spring Cloud Routing` `OpenFeign`依赖。
+
+####  1.6.2 访问地址
+```
+# OpenFeign 测试 Provider Get 接口地址
+http://localhost:1140/OpenFeignControllerGet
+
+# OpenFeign 测试 Provider Get、Post、Delete 接口地址
+http://localhost:1140/OpenFeignControllerOthers
+```

@@ -4,6 +4,9 @@ import com.ibgdn.commons.model.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 /**
  * 服务注册接口
  */
@@ -97,5 +100,17 @@ public class ProviderController {
         System.out.println("Class: " + this.getClass().getName()
                 + ", Method: " + Thread.currentThread().getStackTrace()[1].getMethodName()
                 + ", Id: " + id);
+    }
+
+    /**
+     * OpenFeign 服务 RequestHeader 测试接口
+     *
+     * @param name RequestHeader 绑定参数
+     */
+    @GetMapping("/openFeignRequestHeader")
+    public void getUserByName(@RequestHeader String name) throws UnsupportedEncodingException {
+        System.out.println("Class: " + this.getClass().getName()
+                + ", Method: " + Thread.currentThread().getStackTrace()[1].getMethodName()
+                + ", UserName: " + URLDecoder.decode(name, "UTF-8"));
     }
 }
