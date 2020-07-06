@@ -29,6 +29,12 @@ Spring Cloud Learn Notes.
 IBSpringCloud/eureka/src/main/resources/application-eurekaA.properties
 IBSpringCloud/eureka/src/main/resources/application-eurekaB.properties
 ```
+生产环境需要开启自我保护机制：
+
+```properties
+eureka.server.enable-self-preservation=true
+```
+
 - 端口号
 
   基本 1110，集群 1111、1112。
@@ -85,3 +91,46 @@ eureka.client.service-url.defaultZone=http://localhost:1110/eureka
 添加 `consumer` Module（Spring Boot）。
 
 勾选 `Web` `Spring Web` 、`Spring Cloud Discovery` `Eureka Discovery Client` 依赖。
+
+#### 1.4.2 访问地址
+
+```
+# 静态地址
+http://localhost:1130/static/consumer
+# 动态地址
+http://localhost:1130/dynamic/consumer
+# 动态线性负载均衡地址
+http://localhost:1130/dynamic/balance/consumer
+# RestTemplate 动态线性负载均衡
+http://localhost:1130/restTemplate/consumer
+# RestTemplate 结合  动态负载均衡
+http://localhost:1130/loadBalanced/consumer
+
+# RestTemplate Get 请求
+http://localhost:1130/restTemplateGet
+
+# RestTemplate Post Key Value 请求
+http://localhost:1130/restTemplatePostKeyValue
+# RestTemplate Post Json 请求
+http://localhost:1130/restTemplatePostJson
+# RestTemplate Post Location 请求
+http://localhost:1130/restTemplatePostLocation
+
+# RestTemplate Put Key Value 请求
+http://localhost:1130/restTemplatePutKeyValue
+# RestTemplate Post Json 请求
+http://localhost:1130/restTemplatePutJson
+
+# RestTemplate Delete Key Value 请求
+http://localhost:1130/restTemplateDeleteKeyValue
+# RestTemplate Delete PathVariable 请求
+http://localhost:1130/restTemplateDeletePathVariable
+```
+
+
+
+### 1.5 commons 服务注册
+
+#### 1.5.1 创建
+
+添加 commons Module（Maven）。
