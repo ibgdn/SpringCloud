@@ -2,10 +2,7 @@ package com.ibgdn.provider.controller;
 
 import com.ibgdn.commons.model.User;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 服务注册接口
@@ -52,5 +49,33 @@ public class ProviderController {
     @PostMapping("/providerPostJson")
     public User providerPost2(@RequestBody User user) {
         return user;
+    }
+
+    /**
+     * RestTemplate Put 方法
+     *
+     * @param user 添加用户（key、value)
+     * @return user 添加用户
+     */
+    @PutMapping("/providerPutKeyValue")
+    public void providerPut(User user) {
+        // Class: com.ibgdn.provider.controller.ProviderController, Method: providerPut, User: User{id=99, username='userKeyValue', password='123456'}
+        System.out.println("Class: " + this.getClass().getName()
+                + ", Method: " + Thread.currentThread().getStackTrace()[1].getMethodName()
+                + ", User: " + user);
+    }
+
+    /**
+     * RestTemplate Put 方法
+     *
+     * @param user 添加用户（json）
+     * @return user 添加用户
+     */
+    @PutMapping("/providerPutJson")
+    public void providerPut2(@RequestBody User user) {
+        // Class: com.ibgdn.provider.controller.ProviderController, Method: providerPut2, User: User{id=999, username='userJson', password='123456'}
+        System.out.println("Class: " + this.getClass().getName()
+                + ", Method: " + Thread.currentThread().getStackTrace()[1].getMethodName()
+                + ", User: " + user);
     }
 }

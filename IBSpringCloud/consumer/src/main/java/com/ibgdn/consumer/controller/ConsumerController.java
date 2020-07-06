@@ -258,8 +258,15 @@ public class ConsumerController {
                 + ", user: " + user);
     }
 
+    /**
+     * RestTemplate Post Location 测试方法
+     * <p>
+     * 请求接口后的输出内容如下：
+     * postForLocation uri: + http://provider/loginPage?username=username
+     * Class: com.ibgdn.consumer.controller.ConsumerController, Method: restTemplatePostLocation, user: loginPage:username
+     */
     @GetMapping("/restTemplatePostLocation")
-    public void hello7() {
+    public void restTemplatePostLocation() {
         MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
         map.add("username", "username");
         map.add("password", "123456");
@@ -270,5 +277,29 @@ public class ConsumerController {
         System.out.println("Class: " + this.getClass().getName()
                 + ", Method: " + Thread.currentThread().getStackTrace()[1].getMethodName()
                 + ", user: " + s);
+    }
+
+    /**
+     * RestTemplate Put key value 测试方法
+     */
+    @GetMapping("/restTemplatePutKeyValue")
+    public void restTemplatePutKeyValue() {
+        MultiValueMap<String, Object> linkedMultiValueMap = new LinkedMultiValueMap<>();
+        linkedMultiValueMap.add("id", 99);
+        linkedMultiValueMap.add("username", "userKeyValue");
+        linkedMultiValueMap.add("password", "123456");
+        loadBalancedRestTemplate.put("http://provider/providerPutKeyValue", linkedMultiValueMap);
+    }
+
+    /**
+     * RestTemplate Put json 测试方法
+     */
+    @GetMapping("/restTemplatePutJson")
+    public void restTemplatePutJson() {
+        User modelUser = new User();
+        modelUser.setId(999);
+        modelUser.setUsername("userJson");
+        modelUser.setPassword("123456");
+        loadBalancedRestTemplate.put("http://provider/providerPutJson", modelUser);
     }
 }
