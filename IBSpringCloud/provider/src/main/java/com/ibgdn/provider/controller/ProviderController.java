@@ -55,7 +55,6 @@ public class ProviderController {
      * RestTemplate Put 方法
      *
      * @param user 添加用户（key、value)
-     * @return user 添加用户
      */
     @PutMapping("/providerPutKeyValue")
     public void providerPut(User user) {
@@ -69,7 +68,6 @@ public class ProviderController {
      * RestTemplate Put 方法
      *
      * @param user 添加用户（json）
-     * @return user 添加用户
      */
     @PutMapping("/providerPutJson")
     public void providerPut2(@RequestBody User user) {
@@ -77,5 +75,27 @@ public class ProviderController {
         System.out.println("Class: " + this.getClass().getName()
                 + ", Method: " + Thread.currentThread().getStackTrace()[1].getMethodName()
                 + ", User: " + user);
+    }
+
+    /**
+     * RestTemplate Delete 方法
+     */
+    @DeleteMapping("/providerDeleteKeyValue")
+    public void providerDelete(Integer id) {
+        // Class: com.ibgdn.provider.controller.ProviderController, Method: providerDelete, Id: 98
+        System.out.println("Class: " + this.getClass().getName()
+                + ", Method: " + Thread.currentThread().getStackTrace()[1].getMethodName()
+                + ", Id: " + id);
+    }
+
+    /**
+     * RestTemplate Delete 方法
+     */
+    @DeleteMapping("/providerDeletePathVariable/{id}")
+    public void providerDelete2(@PathVariable Integer id) {
+        // Class: com.ibgdn.provider.controller.ProviderController, Method: providerDelete2, Id: 99
+        System.out.println("Class: " + this.getClass().getName()
+                + ", Method: " + Thread.currentThread().getStackTrace()[1].getMethodName()
+                + ", Id: " + id);
     }
 }

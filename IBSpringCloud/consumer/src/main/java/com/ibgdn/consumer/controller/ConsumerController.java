@@ -302,4 +302,20 @@ public class ConsumerController {
         modelUser.setPassword("123456");
         loadBalancedRestTemplate.put("http://provider/providerPutJson", modelUser);
     }
+
+    /**
+     * RestTemplate Delete key value 测试方法
+     */
+    @GetMapping("/restTemplateDeleteKeyValue")
+    public void restTemplateDeleteKeyValue() {
+        loadBalancedRestTemplate.delete("http://provider/providerDeleteKeyValue?id={1}", 98);
+    }
+
+    /**
+     * RestTemplate Delete PathVariable测试方法
+     */
+    @GetMapping("/restTemplateDeletePathVariable")
+    public void restTemplateDeletePathVariable() {
+        loadBalancedRestTemplate.delete("http://provider/providerDeletePathVariable/{1}", 99);
+    }
 }
