@@ -153,3 +153,15 @@ http://localhost:1140/OpenFeignControllerGet
 # OpenFeign 测试 Provider Get、Post、Delete 接口地址
 http://localhost:1140/OpenFeignControllerOthers
 ```
+
+
+
+### 1.7 controller-api Open Feign 继承特性
+
+#### 1.7.1 创建
+
+添加 `controller-api` Module（Maven）。
+
+添加 `spring-boot-starter-web ` `commons`（之前创建）依赖。
+
+再次访问 1.6.2 中的地址，获取相同结果。

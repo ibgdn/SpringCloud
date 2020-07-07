@@ -1,20 +1,21 @@
-package com.ibgdn.openfeign;
+package com.ibgdn.api;
 
-import com.ibgdn.api.IUserService;
-import org.springframework.cloud.openfeign.FeignClient;
+import com.ibgdn.commons.model.User;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.UnsupportedEncodingException;
 
 /**
- * OpenFeign 接口
+ * Open Feign 请求接口抽象类
  */
-@FeignClient("provider")
-public interface OpenFeignService extends IUserService {
+@RestController
+public interface IUserService {
     /**
      * GetMapping 对应 provider controller 层的调用接口。
      * openfeignGet 方法名没有限制，返回值要和 provider 的接口返回值一致。
      * 通过 FeignClient 和 GetMapping 来确定具体调用哪个接口
      */
-/*
-    @GetMapping("/providerGet")
+    @GetMapping("/provider")
     String openFeignServiceGet();
 
     @GetMapping("/providerGet")
@@ -30,6 +31,5 @@ public interface OpenFeignService extends IUserService {
     void openFeignServiceProviderDelete(@PathVariable("id") Integer id);
 
     @GetMapping("/openFeignRequestHeader")
-    void openFeignServiceProviderDeleteRequestHeader(@RequestHeader("name") String name);
-*/
+    void openFeignServiceProviderDeleteRequestHeader(@RequestHeader("name") String name) throws UnsupportedEncodingException;
 }
