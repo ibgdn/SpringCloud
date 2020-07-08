@@ -165,3 +165,41 @@ http://localhost:1140/OpenFeignControllerOthers
 添加 `spring-boot-starter-web ` `commons`（之前创建）依赖。
 
 再次访问 1.6.2 中的地址，获取相同结果。
+
+
+
+### 1.8 siliense4j-demo siliense4j 测试类
+
+#### 1.8.1 创建
+
+添加 `siliense4j-demo` Module（Maven）。
+
+pom.xml 添加依赖。
+
+```xml
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- 断路器 -->
+        <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-circuitbreaker</artifactId>
+            <version>0.13.2</version>
+        </dependency>
+        <!-- 限流 -->
+        <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-ratelimiter</artifactId>
+            <version>0.13.2</version>
+        </dependency>
+        <!-- 重试 -->
+        <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-retry</artifactId>
+            <version>0.13.2</version>
+        </dependency>
+```
+
