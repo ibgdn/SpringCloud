@@ -6,7 +6,9 @@ import org.springframework.cloud.openfeign.FeignClient;
 /**
  * OpenFeign 接口
  */
-@FeignClient("provider")
+//@FeignClient(value = "provider", fallback = OpenFeignServiceFallBack.class)
+// OpenFeignServiceFallBack 或者 OpenFeignServiceFallBackFactory
+@FeignClient(value = "provider", fallbackFactory = OpenFeignServiceFallBackFactory.class)
 public interface OpenFeignService extends IUserService {
     /**
      * GetMapping 对应 provider controller 层的调用接口。
