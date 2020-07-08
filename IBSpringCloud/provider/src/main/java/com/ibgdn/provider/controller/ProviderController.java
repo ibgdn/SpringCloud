@@ -113,4 +113,19 @@ public class ProviderController {
                 + ", Method: " + Thread.currentThread().getStackTrace()[1].getMethodName()
                 + ", UserName: " + URLDecoder.decode(name, "UTF-8"));
     }
+
+
+    /**
+     * Resilience4j ReTry 接口
+     * @return String 返回数据
+     */
+    @GetMapping("/ProviderResilience4jReTry")
+    public String providerResilience4j() {
+        String str = "Provider Controller. Port: " + port;
+        System.out.println("Class: " + this.getClass().getName()
+                + ", Method: " + Thread.currentThread().getStackTrace()[1].getMethodName()
+                + ", Str: " + str);
+        int i = 1 / 0;
+        return str;
+    }
 }

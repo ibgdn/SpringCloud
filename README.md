@@ -168,11 +168,11 @@ http://localhost:1140/OpenFeignControllerOthers
 
 
 
-### 1.8 siliense4j-demo siliense4j 测试类
+### 1.8 silience4j-demo silience4j 测试类
 
 #### 1.8.1 创建
 
-添加 `siliense4j-demo` Module（Maven）。
+添加 `silience4j-demo` Module（Maven）。
 
 pom.xml 添加依赖。
 
@@ -203,3 +203,21 @@ pom.xml 添加依赖。
         </dependency>
 ```
 
+
+
+### 1.9 silience4j silience4j 容错解决方案
+
+#### 1.9.1 创建
+
+添加 `silience4j` Module（Spring Boot）。
+
+勾选 `Web` `Spring Web` 、`Spring Cloud Discovery` `Eureka Discovery Client` 依赖。
+
+####  1.9.2 访问地址
+
+```
+# Silience4j 测试 ReTry 接口地址
+http://localhost:1150/resilience4jReTry
+```
+
+访问后，浏览器会提示除零操作， Provider 重试5次（application.yml 文件配置），后台输出错误日志5次。

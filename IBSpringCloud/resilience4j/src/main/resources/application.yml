@@ -1,0 +1,26 @@
+resilience4j:
+  retry:
+    # retry 的优先级（高于 cricuitbreaker 和 ratelimiter），值越小优先级越高
+    retry-aspect-order: 399
+    # 分组
+    backends:
+      retryA:
+        # 重试次数
+        maxRetryAttempts: 5
+        # 等待时间
+        waitDuration: 500
+        # 间隔乘数（防止网络抖动）
+        exponentialBackoffMutiplier: 1.1
+        RetryException:
+          - java.lang.RuntimeException
+
+spring:
+  application:
+    name: resilience4j
+server:
+  port: 1150
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1110/eureka
