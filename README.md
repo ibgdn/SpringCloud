@@ -216,8 +216,13 @@ pom.xml 添加依赖。
 ####  1.9.2 访问地址
 
 ```
-# Silience4j 测试 ReTry 接口地址
+# Silience4j 测试 ReTry 接口地址。
+# 访问后，浏览器会提示除零操作， Provider 重试5次（application.yml 文件配置），后台输出错误日志5次。
 http://localhost:1150/resilience4jReTry
+
+# Silience4j 测试 CircuitBreaker 接口地址。
+http://localhost:1150/resilience4jCircuitBreaker
 ```
 
-访问后，浏览器会提示除零操作， Provider 重试5次（application.yml 文件配置），后台输出错误日志5次。
+
+

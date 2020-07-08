@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 @Retry(name = "retryA")
-public class Resilience4jService {
+public class Resilience4jReTryService {
     @Autowired
     RestTemplate restTemplate;
 

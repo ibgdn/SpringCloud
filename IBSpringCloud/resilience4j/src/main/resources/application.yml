@@ -13,6 +13,15 @@ resilience4j:
         exponentialBackoffMutiplier: 1.1
         RetryException:
           - java.lang.RuntimeException
+  circuitbreaker:
+    instances:
+      circuitBreakerA:
+        ringBufferSizeInClosedState: 5
+        ringBufferSizeInHalfOpenState: 3
+        waitInterval: 5000
+        recordException:
+          - org.springframework.web.client.HttpServerErrorException
+    circuit-breaker-aspect-order: 398
 
 spring:
   application:
