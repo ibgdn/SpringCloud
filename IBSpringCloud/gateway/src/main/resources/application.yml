@@ -3,6 +3,15 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: GateWayYMLFilter
+          # lb load balance
+          uri: lb://provider
+          filters:
+            # AddRequestParameter 请求时自动添加配置的参数 name=gwFilter
+            - AddRequestParameter=name,gwFilter
+          predicates:
+            - Method=GET
+
         - id: GateWayYML
           uri: http://httpbin.org
           predicates:
