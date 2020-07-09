@@ -241,7 +241,31 @@ http://localhost:1150/resilience4jRateLimiter
 
 配置 Prometheus 监控服务及数据。
 
-####  1.10.2 Grafana
+####  1.10.3 Grafana
 
 配置 Grafana 监控指标展示工具。
+
+
+
+### 1.11 zuul Zuul 网关
+
+#### 1.11.1 创建
+
+添加 `zuul` Module（Spring Boot）。
+
+勾选 `Web` `Spring Web` 、`Spring Cloud Discovery` `Eureka Discovery Client` 、`Spring Cloud routing` `Zuul[Maintenance]` 依赖。
+
+####  1.11.2 访问地址
+
+```
+# Zuul 代理 Provider 访问接口
+http://localhost:1170/provider/provider
+
+# Zuul 代理 Provider 修改访问地址
+http://localhost:1170/zrp/provider
+```
+
+
+
+
 
