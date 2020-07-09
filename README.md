@@ -276,7 +276,7 @@ http://localhost:1170/zrp/provider?username=user&password=123456
 
 添加 `gateway` Module（Spring Boot）。
 
-勾选 `Spring Cloud routing` `Gateway` 依赖。
+勾选 `Spring Cloud routing` `Gateway` 、`Spring Cloud Discovery` `Eureka Discovery Client`依赖。
 
 ####  1.12.2 访问地址
 
@@ -285,4 +285,7 @@ http://localhost:1170/zrp/provider?username=user&password=123456
 http://localhost:8080/get
 # 实际返回以下地址的数据
 http://httpbin.org/get
+
+# GateWay 注册到 Eureka 后 Provider 都变成了大写字母
+http://localhost:1180/PROVIDER/provider
 ```
