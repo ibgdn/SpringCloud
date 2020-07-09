@@ -267,3 +267,22 @@ http://localhost:1170/zrp/provider
 # Zuul 添加过滤器拦截之后只有添加 `username` 和 `password` 参数，同时参数正确的请求才可以正常访问
 http://localhost:1170/zrp/provider?username=user&password=123456
 ```
+
+
+
+### 1.12 gateway Gateway 网关
+
+#### 1.12.1 创建
+
+添加 `gateway` Module（Spring Boot）。
+
+勾选 `Spring Cloud routing` `Gateway` 依赖。
+
+####  1.12.2 访问地址
+
+```
+# 请求
+http://localhost:8080/get
+# 实际返回以下地址的数据
+http://httpbin.org/get
+```

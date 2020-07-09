@@ -1,0 +1,9 @@
+# 作用和 Application 类、 properties 文件相同，保留一个即可。
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: GateWayYML
+          uri: http://httpbin.org
+          predicates:
+            - Path=/get
