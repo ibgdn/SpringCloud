@@ -263,9 +263,7 @@ http://localhost:1170/provider/provider
 
 # Zuul 代理 Provider 修改访问地址
 http://localhost:1170/zrp/provider
+
+# Zuul 添加过滤器拦截之后只有添加 `username` 和 `password` 参数，同时参数正确的请求才可以正常访问
+http://localhost:1170/zrp/provider?username=user&password=123456
 ```
-
-
-
-
-
