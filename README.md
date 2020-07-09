@@ -1,4 +1,4 @@
-# SpringCloud
+# Spring Cloud
 Spring Cloud Learn Notes.
 
 
@@ -168,7 +168,7 @@ http://localhost:1140/OpenFeignControllerOthers
 
 
 
-### 1.8 silience4j-demo silience4j 测试类
+### 1.8 silience4j-demo Silience4j 测试类
 
 #### 1.8.1 创建
 
@@ -205,7 +205,7 @@ pom.xml 添加依赖。
 
 
 
-### 1.9 silience4j silience4j 容错解决方案
+### 1.9 silience4j Silience4j 容错解决方案
 
 #### 1.9.1 创建
 
@@ -228,4 +228,20 @@ http://localhost:1150/resilience4jRateLimiter
 ```
 
 
+
+### 1.10 micrometer Prometheus 监控信息
+
+#### 1.10.1 创建
+
+添加 `micrometer` Module（Spring Boot）。
+
+勾选 `Web` `Spring Web` 、`Ops` `Spring Boot Actuator` 依赖。
+
+####  1.10.2 Prometheus
+
+配置 Prometheus 监控服务及数据。
+
+####  1.10.2 Grafana
+
+配置 Grafana 监控指标展示工具。
 
