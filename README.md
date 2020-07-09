@@ -222,6 +222,9 @@ http://localhost:1150/resilience4jReTry
 
 # Silience4j 测试 CircuitBreaker 接口地址。
 http://localhost:1150/resilience4jCircuitBreaker
+
+# Silience4j 测试 CircuitBreaker 接口地址。
+http://localhost:1150/resilience4jRateLimiter
 ```
 
 

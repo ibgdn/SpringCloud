@@ -1,11 +1,13 @@
 package com.ibgdn.provider.controller;
 
 import com.ibgdn.commons.model.User;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.Date;
 
 /**
  * 服务注册接口
@@ -116,7 +118,8 @@ public class ProviderController {
 
 
     /**
-     * Resilience4j ReTry 接口
+     * Resilience4j ReTry、CircuitBreaker 调用接口
+     *
      * @return String 返回数据
      */
     @GetMapping("/ProviderResilience4jReTry")
@@ -126,6 +129,22 @@ public class ProviderController {
                 + ", Method: " + Thread.currentThread().getStackTrace()[1].getMethodName()
                 + ", Str: " + str);
         int i = 1 / 0;
+        return str;
+    }
+
+    /**
+     * Resilience4j Rate Limiter 调用接口
+     *
+     * @return String 返回数据
+     */
+    @RateLimiter(name = "rateLimiterA")
+    @GetMapping("/ProviderResilience4jRateLimiter")
+    public String providerResilience4jRateLimiter() {
+        Date date = new Date();
+        System.out.println("date: " + date);
+        String str = "Class: " + this.getClass().getName()
+                + ", Method: " + Thread.currentThread().getStackTrace()[1].getMethodName()
+                + ", Date: " + date;
         return str;
     }
 }
