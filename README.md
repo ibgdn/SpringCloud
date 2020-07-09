@@ -288,4 +288,7 @@ http://httpbin.org/get
 
 # GateWay 注册到 Eureka 后 Provider 都变成了大写字母
 http://localhost:1180/PROVIDER/provider
+
+# GateWay predicates 转发规则
+http://localhost:1180/get
 ```

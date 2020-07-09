@@ -7,6 +7,14 @@ spring:
           uri: http://httpbin.org
           predicates:
             - Path=/get
+            # 某个时间点之后再可以转发
+            - After=2020-07-09T21:25:00+08:00[Asia/Shanghai]
+            #- Before=2020-07-09T21:25:00+08:00[Asia/Shanghai]
+            #- Between=2020-07-09T21:25:00+08:00[Asia/Shanghai],2020-07-09T21:25:00+08:00[Asia/Shanghai]
+            # 限定特定请求方法
+            - Method=GET
+            # 请求必须有 name 参数才会转发
+            - Query=name,gw.*
       discovery:
         locator:
           # 开启代理
