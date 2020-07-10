@@ -316,3 +316,19 @@ http://localhost:1190/client1-dev.yml
 ```
 
 
+
+### 1.14 configclient Config Client 系统配置管理客户端
+
+#### 1.14.1 创建
+
+添加 `configclient` Module（Spring Boot）。
+
+勾选  `Web` `Spring Web` 、 `Spring Cloud Config` `Config Client`  依赖。
+
+####  1.14.2 访问地址
+
+```
+# 读取配置文件信息
+http://localhost:1200/configClient
+```
+
