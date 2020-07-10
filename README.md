@@ -292,3 +292,27 @@ http://localhost:1180/PROVIDER/provider
 # GateWay predicates 转发规则
 http://localhost:1180/get
 ```
+
+
+
+### 1.13 configserver Config Server 系统配置管理服务端
+
+#### 1.13.1 创建
+
+添加 `configserver` Module（Spring Boot）。
+
+勾选  `Web` `Spring Web` 、 `Spring Cloud Config` `Config Server`  依赖。
+
+####  1.13.2 访问地址
+
+```
+# 读取配置文件信息(Json)
+http://localhost:1190/client1/dev/master
+http://localhost:1190/client1/dev/
+
+# 读取配置文件信息(字符串)
+http://localhost:1190/client1-dev.properties
+http://localhost:1190/client1-dev.yml
+```
+
+
