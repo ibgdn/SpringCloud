@@ -334,7 +334,10 @@ http://localhost:1200/configClient
 # 调用 serverclient post 请求的接口，就会重新获取配置数据，刷新配置信息
 http://localhost:1200/actuator/refresh
 
-# 配置 Spring Cloud Bus 调用 serverclient post 请求的接口，就会重新获取配置数据，刷新配置信息
+# 配置 Spring Cloud Bus 调用 serverclient post 请求的接口，就会重新获取配置数据，刷新全部服务配置信息
 http://localhost:1200/actuator/refresh-bus
+
+# 调用 serverclient post 请求的接口配合 instance-idj，就会重新获取配置数据，刷新单个服务配置信息
+http://localhost:1200/actuator/refresh-bus/client1:1201
 ```
 
