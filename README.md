@@ -330,5 +330,8 @@ http://localhost:1190/client1-dev.yml
 ```
 # 读取配置文件信息
 http://localhost:1200/configClient
+
+# 调用 serverclient post 请求的接口，就会重新获取配置数据，刷新配置信息
+http://localhost:1200/actuator/refresh
 ```
 
