@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class ConfigClientController {
-    @Value("${javaboy}")
-    String javaboy;
+//    @Value("${javaboy}")
+//    String javaboy;
 
     /**
      * 调用接口获取配置信息
@@ -19,6 +19,7 @@ public class ConfigClientController {
      */
     @GetMapping("/configClient")
     public String configClient() {
-        return javaboy;
+//        return javaboy;
+        return null;
     }
 }
