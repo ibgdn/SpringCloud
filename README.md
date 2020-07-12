@@ -364,11 +364,27 @@ http://localhost:1210/sendMessage
 
 #### 1.15.3 消息分组
 
+相同或不同地址的消息，被多实例交替随机消费。
+
 ```
-# stream 启动多实例
+# stream 启动多实例（消息分组）
 java -jar stream-0.0.1-SNAPSHOT.jar --server.port=1211
 java -jar stream-0.0.1-SNAPSHOT.jar --server.port=1212
 
-# 访问自定义消息地址（多次访问该地址，多实例 stream 1211、1212交替输出日志信息）
+# 访问自定义消息地址
 http://localhost:1211/sendMessage
 ```
+
+#### 1.15.4 消息分区
+
+相同特征的消息始终被同一消费者消费。
+
+```
+# stream 启动多实例（消息分区）
+java -jar stream-0.0.1-SNAPSHOT.jar --server.port=1211 --spring.cloud.stream.instance-index=1
+java -jar stream-0.0.1-SNAPSHOT.jar --server.port=1212 --spring.cloud.stream.instance-index=2
+
+# 访问自定义消息地址
+http://localhost:1211/sendMessage
+```
+
