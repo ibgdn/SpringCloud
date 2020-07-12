@@ -415,7 +415,10 @@ http://localhost:1210/sendDelayMessage
 # 简单调用接口
 http://localhost:1220/sleuth
 
-# 链路追踪调用接口
+# 调用链调用接口
 http://localhost:1220/sleuthRestTemplate
+
+# 异步任务调用接口
+http://localhost:1220/sleuthAsync
 ```
 

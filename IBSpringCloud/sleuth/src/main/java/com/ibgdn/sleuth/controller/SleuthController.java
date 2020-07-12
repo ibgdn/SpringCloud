@@ -1,5 +1,6 @@
 package com.ibgdn.sleuth.controller;
 
+import com.ibgdn.sleuth.service.SleuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class SleuthController {
 
     @Autowired
     RestTemplate restTemplate;
+
+    @Autowired
+    SleuthService sleuthService;
 
     /**
      * Sleuth 简单调用
@@ -59,5 +63,20 @@ public class SleuthController {
         logger.info("Class: [{}], Method: [{}], Info: [{}].",
                 this.getClass().getName(), Thread.currentThread().getStackTrace()[1].getMethodName(), str);
         return str;
+    }
+
+    /**
+     * 异步任务调用接口
+     *
+     * @return String 返回数据
+     */
+    //2020-07-12 23:11:53.347  INFO [sleuth,535e9daed9508290,535e9daed9508290,true] 11040 --- [nio-1220-exec-2] c.i.sleuth.controller.SleuthController   : Class: [com.ibgdn.sleuth.controller.SleuthController], Method: [sleuthAsync], Info: [sleuthAsync].
+    //2020-07-12 23:11:53.388  INFO [sleuth,535e9daed9508290,dad7d837f63d4e8e,true] 11040 --- [         task-1] com.ibgdn.sleuth.service.SleuthService   : Class: [com.ibgdn.sleuth.service.SleuthService], Method: [sleuthService], Info: [sleuthService].
+    @GetMapping("/sleuthAsync")
+    public String sleuthAsync() {
+        String str = "sleuthAsync";
+        logger.info("Class: [{}], Method: [{}], Info: [{}].",
+                this.getClass().getName(), Thread.currentThread().getStackTrace()[1].getMethodName(), str);
+        return sleuthService.sleuthService();
     }
 }
