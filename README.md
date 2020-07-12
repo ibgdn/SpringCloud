@@ -341,3 +341,16 @@ http://localhost:1200/actuator/refresh-bus
 http://localhost:1200/actuator/refresh-bus/client1:1201
 ```
 
+
+
+### 1.15 stream Stream 构建消息驱动
+
+#### 1.15.1 创建
+
+添加 `stream` Module（Spring Boot）。
+
+勾选  `Web` `Spring Web` 、 `Messaging` `Spring for RabbitMQ`、`Spring Cloud Messaging` `Cloud Stream`  依赖。
+
+####  1.15.2 RabbitMQ 发送消息
+
+Queues =》 Publish message =》 Payload 填写发送的 message
