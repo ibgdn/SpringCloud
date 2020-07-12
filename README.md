@@ -388,3 +388,14 @@ java -jar stream-0.0.1-SNAPSHOT.jar --server.port=1212 --spring.cloud.stream.ins
 http://localhost:1211/sendMessage
 ```
 
+#### 1.15.5 消息定时
+
+需要 Docker 容器（或者服务器）安装插件。
+
+rabbitmq-delayed-message-exchange[下载地址](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases/tag/v3.8.0)。
+
+```
+# 访问延迟消息地址
+http://localhost:1210/sendDelayMessage
+```
+

@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 
+import java.util.Date;
+
 /**
  * 自定义消息接收
  */
@@ -22,7 +24,7 @@ public class CustomizeMessageReceiver {
      */
     @StreamListener(CustomizeMessageChannel.INPUT)
     public void customizeReceiver(Object object) {
-        logger.info("Class: [{}], Method: [{}], Message: [{}]",
-                this.getClass().getName(), Thread.currentThread().getStackTrace()[1].getMethodName(), object);
+        logger.info("Class: [{}], Method: [{}], Date: [{}], Message: [{}]",
+                this.getClass().getName(), Thread.currentThread().getStackTrace()[1].getMethodName(), new Date(), object);
     }
 }
