@@ -399,3 +399,23 @@ rabbitmq-delayed-message-exchange[下载地址](https://github.com/rabbitmq/rabb
 http://localhost:1210/sendDelayMessage
 ```
 
+
+
+### 1.16 sleuth Sleuth 构建消息驱动
+
+#### 1.16.1 创建
+
+添加 `sleuth` Module（Spring Boot）。
+
+勾选  `Web` `Spring Web` 、`Spring Cloud Tracing` `Sleuth` 依赖。
+
+####  1.16.2 访问地址
+
+```
+# 简单调用接口
+http://localhost:1220/sleuth
+
+# 链路追踪调用接口
+http://localhost:1220/sleuthRestTemplate
+```
+
