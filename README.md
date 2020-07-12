@@ -354,3 +354,11 @@ http://localhost:1200/actuator/refresh-bus/client1:1201
 ####  1.15.2 RabbitMQ 发送消息
 
 Queues =》 Publish message =》 Payload 填写发送的 message
+
+#### 1.15.2 访问地址
+
+```
+# 自定义消息通道
+http://localhost:1210/sendMessage
+```
+
