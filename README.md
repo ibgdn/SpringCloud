@@ -362,3 +362,13 @@ Queues =》 Publish message =》 Payload 填写发送的 message
 http://localhost:1210/sendMessage
 ```
 
+#### 1.15.3 消息分组
+
+```
+# stream 启动多实例
+java -jar stream-0.0.1-SNAPSHOT.jar --server.port=1211
+java -jar stream-0.0.1-SNAPSHOT.jar --server.port=1212
+
+# 访问自定义消息地址（多次访问该地址，多实例 stream 1211、1212交替输出日志信息）
+http://localhost:1211/sendMessage
+```
