@@ -443,7 +443,7 @@ http://localhost:1240/zipkin02
 
 
 
-### 1.18 nacos Nacos Alibaba 服务发现、配置、管理
+### 1.18 nacos Nacos Alibaba 服务配置
 
 #### 1.18.1 创建
 
@@ -456,5 +456,50 @@ http://localhost:1240/zipkin02
 ```
 # 调用 nacos 的接口，获取配置文件数据
 http://localhost:1250/nacos
+
+# nacos 作为注册中心，需要启动两个实例
+java -jar nacosregister-0.0.1-SNAPSHOT.jar --server.port=1261
+java -jar nacosregister-0.0.1-SNAPSHOT.jar --server.port=1262
+```
+
+
+
+### 1.19 nacosregister Nacos Alibaba 服务注册
+
+#### 1.19.1 创建
+
+添加 `nacosregister` Module（Spring Boot 2.8）。
+
+勾选  `Web` `Spring Web` 、`Alibaba` `Nacos Service Discovery` 依赖。
+
+Nacos 作为注册中心。
+
+```
+# nacos 作为注册中心，需要启动两个实例
+java -jar nacosregister-0.0.1-SNAPSHOT.jar --server.port=1261
+java -jar nacosregister-0.0.1-SNAPSHOT.jar --server.port=1262
+```
+
+查看 Nacos 控制台的【服务管理】=》【服务列表】，可以看到多个实例。
+
+
+
+### 1.20 nacosconsumer Nacos Alibaba 服务注册
+
+#### 1.20.1 创建
+
+添加 `nacosconsumer` Module（Spring Boot 2.8）。
+
+勾选  `Web` `Spring Web` 、`Alibaba` `Nacos Service Discovery` 依赖。
+
+Nacos 作为注册中心。
+
+查看 Nacos 控制台的【服务管理】=》【服务列表】，可以看到多个实例。
+
+#### 1.20.2 访问地址
+
+```
+# 调用 nacos 消费者的接口
+http://localhost:1270/nacosConsumer
 ```
 
