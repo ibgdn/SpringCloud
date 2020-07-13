@@ -422,3 +422,20 @@ http://localhost:1220/sleuthRestTemplate
 http://localhost:1220/sleuthAsync
 ```
 
+
+
+### 1.17 zipkin01/02 Zipkin 分布式追踪
+
+#### 1.17.1 创建
+
+添加 `zipkin01/02` Module（Spring Boot）。
+
+勾选  `Web` `Spring Web` 、`Messaging` `Spring for RabbitMQ`、`Spring Cloud Tracing` `Sleuth`、`Spring Cloud Tracing` `Zipkin Client`、`Spring Cloud Messaging` `Cloud Stream` 依赖。
+
+####  1.17.2 访问地址
+
+```
+# 调用 zipkin02 的接口
+http://localhost:1240/zipkin02
+```
+
