@@ -432,10 +432,29 @@ http://localhost:1220/sleuthAsync
 
 勾选  `Web` `Spring Web` 、`Messaging` `Spring for RabbitMQ`、`Spring Cloud Tracing` `Sleuth`、`Spring Cloud Tracing` `Zipkin Client`、`Spring Cloud Messaging` `Cloud Stream` 依赖。
 
+需要启动 RabbitMQ、ElasticSearch 和 Zipkin。
+
 ####  1.17.2 访问地址
 
 ```
 # 调用 zipkin02 的接口
 http://localhost:1240/zipkin02
+```
+
+
+
+### 1.18 nacos Nacos Alibaba 服务发现、配置、管理
+
+#### 1.18.1 创建
+
+添加 `nacos` Module（Spring Boot 2.8）。
+
+勾选  `Web` `Spring Web` 、`Alibaba` `Nacos Configuration` 依赖。
+
+####  1.18.2 访问地址
+
+```
+# 调用 nacos 的接口，获取配置文件数据
+http://localhost:1250/nacos
 ```
 
