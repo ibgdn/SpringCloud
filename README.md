@@ -503,3 +503,20 @@ Nacos 作为注册中心。
 http://localhost:1270/nacosConsumer
 ```
 
+
+
+### 1.21 sentinel Sentinel Alibaba 控制台
+
+#### 1.21.1 创建
+
+添加 `sentinel` Module（Spring Boot 2.8）。
+
+勾选  `Web` `Spring Web` 、`Alibaba` `Sentinel` 依赖。
+
+#### 1.21.2 访问地址
+
+```
+# 调用 sentinel 的接口
+http://localhost:1280/sentinel
+```
+
